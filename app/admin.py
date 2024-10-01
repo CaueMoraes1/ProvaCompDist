@@ -1,8 +1,8 @@
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask import redirect
-from auth import validate_authentication, auth
-from models import Profile
+from .auth import validate_authentication, auth
+from .models import Profile
 from werkzeug.exceptions import HTTPException
 from flask import Response
 

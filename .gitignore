@@ -2,7 +2,7 @@
 bin/
 obj/
 venv/
-
+app/__pycache__
 
 # Ignorar arquivos temporários do Visual Studio
 *.user

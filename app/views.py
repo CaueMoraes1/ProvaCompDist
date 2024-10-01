@@ -1,7 +1,7 @@
 from flask import jsonify
-from models import Profile
-from auth import auth
-from config import log
+from .models import Profile
+from .auth import auth
+from .config import log
 
 def register_routes(app):
     @app.route('/')

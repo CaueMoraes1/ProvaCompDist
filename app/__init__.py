@@ -1,8 +1,8 @@
-from config import create_app
-from models import db
+from .config import create_app
+from .models import db
 from flask_migrate import Migrate
-from views import register_routes
-from admin import create_admin
+from .views import register_routes
+from .admin import create_admin
 
 def create_all():
     app = create_app()

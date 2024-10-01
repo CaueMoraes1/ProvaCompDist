@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import Profile
+from .models import Profile
 from flask_httpauth import HTTPBasicAuth
 
 auth = HTTPBasicAuth()
