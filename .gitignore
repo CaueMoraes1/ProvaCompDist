@@ -1,8 +1,8 @@
 # Ignorar arquivos bin e obj
-bin/
-obj/
-venv/
-app/__pycache__
+app_root_dir/bin/
+app_root_dir/obj/
+app_root_dir/venv/
+app_root_dir/app/__pycache__
 
 # Ignorar arquivos temporários do Visual Studio
 *.user
@@ -11,3 +11,15 @@ app/__pycache__
 
 # Ignorar arquivos de logs
 *.log
+
+# Ignorar arquivos de virtual environment
+app_root_dir/pyvenv.cfg
+app_root_dir/Lib/
+app_root_dir/Scripts/
+app_root_dir/Include/
+
+# Ignorar diretórios de imports e pip installs
+app_root_dir/site-packages/
+
+# Ignorar arquivo de SQLite
+app_root_dir/instance
