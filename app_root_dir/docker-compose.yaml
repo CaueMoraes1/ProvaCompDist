@@ -8,7 +8,13 @@ services:
       FLASK_ENV: development
     volumes:
       - ./data:/app/data  # Volume para o SQLite
+    networks:
+      - app_network
 
 volumes:
   db_data:
     driver: local
+    
+networks:
+  app_network:
+    external: true

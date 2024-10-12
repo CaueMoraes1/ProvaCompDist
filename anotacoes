@@ -1,0 +1,22 @@
+para criar docker-compose do mysql: pesquisamos no https://hub.docker.com a imagem oficial do mysql e utilizamos o exemplo dado no site:
+https://hub.docker.com/_/mysql#:~:text=Example%20docker%2Dcompose.yml%20for%20mysql
+Colocamos no docker-compose o driver como local para deixar o docker decidir o melhor local para guardar o volume do banco, criando um volume anônimo
+
+Para criar a imagem do flask, utilizamos os exemplos e imagens da pagina oficial de imagem python: https://hub.docker.com/_/python
+
+pensamos em adicionar um passo para clonar o repositório diretamente no container para evitar a atividade de clonar na mão na maquina local de quem fosse executar o projeto, mas essa ideia tinha alguns problemas, que nos fizeram desistir da adição desse passo adicional: 
+- o container precisaria fazer o download do git e rodar apt-get update todas as vezes que fosse instanciado, o que prejudicaria a performance e os gastos de memória, enquanto um clone manual seria feito apenas uma vez;
+- o container precisaria, necessariamente, estar conectado à internet para funcionar, não funcionaria localmente, o que restringiria o uso da aplicação e a instância dos containeres;
+- poderiam ocorrer problemas em relação às versões do app
+
+pelos motivos listados acima, mantivemos a atividade de clonar "localmente" o repositório no fluxo de ativação da plataforma.
+
+adicionamos as informações de conexão aos bancos no app.cfg para centralizar as variáveis de ambiente e assegurar sua anonimização no repositório que utilizamos para versionamento
+
+separamos os dois arquivos docker-compose para maior modularidade
+
+utilizamos uma rede docker para comunicar os dois containeres:
+docker network create app_network
+7eb5b91c3c59e4c43dadc4718cb80e3d06802b80387c2aa351adfbae41c15e98
+
+adicionamos o user do app como root no banco para garantir que o init.sql fosse executado sem problemas e a conexão não falhasse.
