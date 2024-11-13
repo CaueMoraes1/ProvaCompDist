@@ -21,4 +21,4 @@ COPY . .
 EXPOSE 8080
 
 # Define o comando de inicialização
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["python", "run.py"]

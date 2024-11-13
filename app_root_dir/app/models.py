@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class Profile(db.Model):
+    __table_name__ = "profile"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False, index=True)
     password = db.Column(db.String(32), nullable=False)

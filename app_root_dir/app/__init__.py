@@ -1,5 +1,5 @@
 from .config import create_app
-from .models import db
+from .models import db, Profile
 from flask_migrate import Migrate
 from .views import register_routes
 from .admin import create_admin
@@ -9,6 +9,7 @@ def create_all():
     
     # Initialize database
     db.init_app(app)
+    
     migrate = Migrate(app, db)
 
     # Register routes
@@ -18,3 +19,13 @@ def create_all():
     create_admin(app, db)
 
     return app
+
+def initialize_database():
+    if Profile.query.first() is None:
+        default_profile = Profile(username="admin", password="admin")
+        
+        db.session.add(default_profile)
+        db.session.commit()
+        print("Perfil padrão criado: admin")
+    else:
+        print("Perfis existentes encontrados, nenhuma criação necessária.")

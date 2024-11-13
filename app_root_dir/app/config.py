@@ -1,6 +1,7 @@
 import logging
 from flask import Flask
 import MySQLdb
+import time
 
 # Application log
 logging.basicConfig(format='%(asctime)s - %(message)s', filename="./log/app.log", level=logging.INFO)
@@ -18,6 +19,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config.get('DATABASE')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
+    time.sleep(90)
 
     try:
         # Conexão com o MySQL usando o nome do serviço 'db' como host
@@ -27,7 +29,11 @@ def create_app():
             passwd=app.config['MYSQL_PASSWORD'],
             db=app.config['MYSQL_DB']
         )
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql://{app.config['MYSQL_USER']}:{app.config['MYSQL_PASSWORD']}@{app.config['MYSQL_HOST']}/{app.config['MYSQL_DB']}"
+
+        app.config['SQLALCHEMY_DATABASE_URI'] = (
+            f"mysql://{app.config['MYSQL_USER']}:{app.config['MYSQL_PASSWORD']}@{app.config['MYSQL_HOST']}/{app.config['MYSQL_DB']}"
+        )
+        
         print("Conexão MySQL estabelecida com sucesso!")
     except MySQLdb.Error as e:
         # Fallback para SQLite

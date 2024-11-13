@@ -1,4 +1,5 @@
 from flask import jsonify
+from flask_admin.contrib.sqla import ModelView
 from .models import Profile
 from .auth import auth
 from .config import log
@@ -15,3 +16,6 @@ def register_routes(app):
             response = {"success": message_info}
             log.info(message_info)
             return jsonify(response)
+
+class UserAdmin(ModelView):
+    """Classe de administracao de user"""
